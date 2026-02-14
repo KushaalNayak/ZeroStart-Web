@@ -82,8 +82,8 @@ const Home = () => {
     }, []);
 
     // Calculate opacity based on scroll position
-    // Starts fading at 100px, completely hidden by 500px
-    const orbOpacity = Math.max(0, Math.min(1, 1 - (scrollY - 100) / 400));
+    // Starts fading at 50px, completely hidden by 400px
+    const orbOpacity = Math.max(0, Math.min(1, 1 - (scrollY - 50) / 350));
 
     return (
         <div className="min-h-screen hero-gradient font-sans">
