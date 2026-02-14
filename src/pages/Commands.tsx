@@ -331,8 +331,17 @@ const Commands = () => {
                     <p className="text-white/60 mb-8 max-w-2xl mx-auto">
                         Install ZeroStart globally and start building your next project in seconds with any of these 31 commands.
                     </p>
-                    <div className="inline-flex items-center gap-4 p-4 rounded-xl bg-black/40 border border-white/10">
+                    <div
+                        onClick={() => {
+                            navigator.clipboard.writeText('npm install -g zerostart-cli');
+                        }}
+                        className="inline-flex items-center gap-4 p-4 rounded-xl bg-black/40 border border-white/10 cursor-pointer hover:border-accent/40 transition-colors group"
+                        title="Click to copy"
+                    >
                         <code className="text-accent font-mono text-lg">npm install -g zerostart-cli</code>
+                        <div className="p-2 rounded-lg bg-white/5 group-hover:bg-accent/10 transition-colors">
+                            <Copy className="w-5 h-5 text-white/40 group-hover:text-accent" />
+                        </div>
                     </div>
                 </motion.div>
             </div>

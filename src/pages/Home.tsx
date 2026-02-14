@@ -12,7 +12,9 @@ import {
     Code2,
     Linkedin,
     Cpu,
-    LayoutGrid
+    LayoutGrid,
+    Check,
+    Copy
 } from 'lucide-react';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
@@ -71,6 +73,13 @@ const FeatureCard = ({ icon: Icon, title, description }: { icon: any, title: str
 
 const Home = () => {
     const [scrollY, setScrollY] = useState(0);
+    const [copied, setCopied] = useState(false);
+
+    const handleGetStarted = () => {
+        navigator.clipboard.writeText('npm install -g zerostart-cli');
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+    };
 
     useEffect(() => {
         const handleScroll = () => {
@@ -100,8 +109,15 @@ const Home = () => {
                         <a href="#usage" className="hover:text-white transition-colors">Usage</a>
                         <Link to="/commands" className="hover:text-white transition-colors">Commands</Link>
                     </div>
-                    <button className="bg-white text-black px-4 py-2 rounded-full text-sm font-bold hover:bg-white/90 transition-colors">
-                        Get Started
+                    <button
+                        onClick={handleGetStarted}
+                        className="bg-white text-black px-4 py-2 rounded-full text-sm font-bold hover:bg-white/90 transition-colors flex items-center gap-2"
+                    >
+                        {copied ? (
+                            <><Check className="w-4 h-4" /> Copied!</>
+                        ) : (
+                            'Get Started'
+                        )}
                     </button>
                 </div>
             </nav>
@@ -142,12 +158,24 @@ const Home = () => {
                         Zero configuration, intelligent project scaffolding, and one-command deployments.
                     </p>
                     <div className="flex flex-col md:flex-row gap-4 justify-center">
-                        <button className="bg-accent hover:bg-accent-dark text-white px-8 py-4 rounded-xl font-bold text-lg flex items-center gap-2 transition-all group justify-center">
-                            Get Started <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                        <button
+                            onClick={handleGetStarted}
+                            className="bg-accent hover:bg-accent-dark text-white px-8 py-4 rounded-xl font-bold text-lg flex items-center gap-2 transition-all group justify-center min-w-[200px]"
+                        >
+                            {copied ? (
+                                <><Check className="w-5 h-5 text-white" /> Copied to Clipboard!</>
+                            ) : (
+                                <>Get Started <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" /></>
+                            )}
                         </button>
-                        <button className="bg-white/5 hover:bg-white/10 text-white border border-white/10 px-8 py-4 rounded-xl font-bold text-lg flex items-center gap-2 transition-all justify-center">
+                        <a
+                            href="https://github.com/KushaalNayak/ZeroStart-Web"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="bg-white/5 hover:bg-white/10 text-white border border-white/10 px-8 py-4 rounded-xl font-bold text-lg flex items-center gap-2 transition-all justify-center"
+                        >
                             <Github className="w-5 h-5" /> View on GitHub
-                        </button>
+                        </a>
                     </div>
                 </motion.div>
 
