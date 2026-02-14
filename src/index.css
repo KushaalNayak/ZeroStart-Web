@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+body {
+  background-color: #000000;
+  color: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body ::selection {
+  background-color: rgba(59, 130, 246, 0.3);
+  color: white;
+}
+
+.glass {
+  @apply bg-white/5 backdrop-blur-md border border-white/10;
+}
+
+.gradient-text {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-white/80 to-white/40;
+}
+
+.hero-gradient {
+  background: radial-gradient(circle at 50% -20%, rgba(59, 130, 246, 0.15) 0%, transparent 50%);
+}
+
+code {
+  @apply font-mono;
+}
