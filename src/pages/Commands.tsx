@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Terminal, ArrowLeft, Copy, Check, Rocket, Code2, Database, Cpu } from 'lucide-react';
+import { Terminal, ArrowLeft, Copy, Check, Rocket, Code2, Database, Cpu, Github, Linkedin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
@@ -336,6 +336,25 @@ const Commands = () => {
                     </div>
                 </motion.div>
             </div>
+
+            {/* Footer */}
+            <footer className="border-t border-white/5 py-12 px-6 md:px-12">
+                <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+                    <div className="flex items-center gap-2">
+                        <Rocket className="w-5 h-5 text-accent" />
+                        <span className="font-bold tracking-tighter">ZeroStart</span>
+                    </div>
+                    <p className="text-white/40 text-sm font-medium">Built with ❤️ by Kushaal Badavath</p>
+                    <div className="flex gap-6">
+                        <a href="https://github.com/KushaalNayak/ZeroStart-Web" target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-white transition-colors">
+                            <Github className="w-6 h-6" />
+                        </a>
+                        <a href="https://www.linkedin.com/in/kushaalbadavath/" target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-white transition-colors">
+                            <Linkedin className="w-6 h-6" />
+                        </a>
+                    </div>
+                </div>
+            </footer>
         </div>
     );
 };

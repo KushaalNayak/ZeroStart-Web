@@ -309,10 +309,10 @@ const Home = () => {
                     </div>
                     <p className="text-white/40 text-sm font-medium">Built with ❤️ by Kushaal Badavath</p>
                     <div className="flex gap-6">
-                        <a href="#" className="text-white/40 hover:text-white transition-colors">
+                        <a href="https://github.com/KushaalNayak/ZeroStart-Web" target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-white transition-colors">
                             <Github className="w-6 h-6" />
                         </a>
-                        <a href="#" className="text-white/40 hover:text-white transition-colors">
+                        <a href="https://www.linkedin.com/in/kushaalbadavath/" target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-white transition-colors">
                             <Linkedin className="w-6 h-6" />
                         </a>
                     </div>
