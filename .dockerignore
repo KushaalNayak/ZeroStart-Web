@@ -1,10 +1,6 @@
 node_modules
 dist
 .git
-.gitignore
-README.md
-Dockerfile
-.dockerignore
+.vscode
 npm-debug.log
 error.log
-.vscode
