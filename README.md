@@ -1,46 +1,42 @@
 # ZeroStart Web
 
-The official landing page for ZeroStart CLI - the ultimate tool for beginner web developers.
+Marketing website for [ZeroStart](https://www.npmjs.com/package/zerostart) — a CLI tool that scaffolds projects in seconds.
 
-## 🚀 Features
+## Stack
 
-- **Modern Design**: Beautiful, responsive landing page with animated WebGL orb
-- **Interactive UI**: Smooth scroll effects and hover animations
-- **Full Documentation**: Complete CLI commands reference
-- **SEO Optimized**: Meta tags and semantic HTML for better discoverability
+- React + TypeScript
+- Vite
+- Tailwind CSS
 
-## 🛠️ Tech Stack
-
-- **React 18** with TypeScript
-- **Vite** for blazing fast development
-- **Tailwind CSS** for styling
-- **Framer Motion** for animations
-- **React Router** for navigation
-- **OGL** for WebGL graphics
-
-## 📦 Installation
+## Getting Started
 
 ```bash
 npm install
-```
-
-## 🏃 Development
-
-```bash
 npm run dev
 ```
 
-## 🏗️ Build
+## Build
 
 ```bash
 npm run build
 ```
 
-## 📝 License
+## Deploy
 
-MIT License - Built with ❤️ by Kushaal Badavath
+The project includes a `Dockerfile` + `nginx.conf` for containerized deployment.
 
-## 🔗 Links
+```bash
+docker build -t zerostart-web .
+docker run -p 80:80 zerostart-web
+```
 
-- [ZeroStart CLI](https://www.npmjs.com/package/zerostart-cli)
-- [GitHub Repository](https://github.com/KushaalNayak/ZeroStart-Web)
+## Pages
+
+| Route | Description |
+|-------|-------------|
+| `/` | Home |
+| `/commands` | CLI command reference |
+| `/about` | About ZeroStart |
+| `/contact` | Contact |
+| `/privacy` | Privacy Policy |
+| `/terms` | Terms of Service |
