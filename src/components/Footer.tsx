@@ -35,7 +35,7 @@ const Footer = () => {
             </div>
 
             <div className="max-w-6xl mx-auto pt-16 mt-16 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] text-white/30 font-bold uppercase tracking-[0.2em]">
-                <div>© 2026 Zero-One Developers</div>
+                <div>© 2026 ZeroStart</div>
                 <div className="flex items-center gap-2 text-white/20">
                     <span>Built by</span>
                     <a
