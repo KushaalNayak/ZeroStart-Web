@@ -1,16 +1,34 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Copy, Check, Terminal as TerminalIcon, Github, ExternalLink, Star } from 'lucide-react';
+import { Copy, Check, Terminal as TerminalIcon, Github, ExternalLink, Star, Download } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import TerminalMockup from '../components/TerminalMockup';
 import Logo from '../components/Logo';
 import Footer from '../components/Footer';
 
+const GITHUB_URL = 'https://github.com/KushaalNayak/ZeroStart-cli';
+const NPM_URL = 'https://www.npmjs.com/package/zerostart-cli';
+
 const Home = () => {
     const [copied, setCopied] = useState(false);
     const [copiedRun, setCopiedRun] = useState(false);
+    const [npmDownloads, setNpmDownloads] = useState<string | null>(null);
     const installCmd = 'npm install -g zerostart-cli';
     const runCmd = 'zerostart';
+
+    useEffect(() => {
+        fetch('https://api.npmjs.org/downloads/point/last-month/zerostart-cli')
+            .then(r => r.json())
+            .then(data => {
+                const n = data.downloads as number;
+                if (n >= 1000) {
+                    setNpmDownloads((n / 1000).toFixed(1) + 'K');
+                } else {
+                    setNpmDownloads(String(n));
+                }
+            })
+            .catch(() => setNpmDownloads('3K+'));
+    }, []);
 
     const copy = (text: string, setter: (v: boolean) => void) => {
         navigator.clipboard.writeText(text);
@@ -51,7 +69,7 @@ const Home = () => {
                     </div>
 
                     <a
-                        href="https://github.com/KushaalNayak/zerostart-cli"
+                        href={GITHUB_URL}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 text-white px-4 py-2 rounded-full text-[11px] font-bold transition-all uppercase tracking-widest"
@@ -70,8 +88,8 @@ const Home = () => {
                         animate={{ opacity: 1, y: 0 }}
                         className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-vibrant/5 border border-blue-vibrant/15 text-blue-vibrant text-[11px] font-bold uppercase tracking-widest"
                     >
-                        <Star className="w-3 h-3 fill-blue-vibrant" />
-                        3K+ npm downloads
+                        <Download className="w-3 h-3" />
+                        {npmDownloads ? `${npmDownloads} downloads last month` : 'Loading...'}
                     </motion.div>
 
                     <motion.h1
@@ -106,7 +124,7 @@ const Home = () => {
                             Get Started
                         </a>
                         <a
-                            href="https://github.com/KushaalNayak/zerostart-cli"
+                            href={GITHUB_URL}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 text-white px-6 py-3 rounded-full text-sm font-bold transition-all"
@@ -127,7 +145,6 @@ const Home = () => {
                     </div>
 
                     <div className="space-y-3">
-                        {/* Install */}
                         <div
                             onClick={() => copy(installCmd, setCopied)}
                             className="group flex items-center justify-between gap-4 bg-black/60 border border-white/8 hover:border-blue-vibrant/30 rounded-xl px-5 py-4 cursor-pointer transition-all"
@@ -141,7 +158,6 @@ const Home = () => {
                             </div>
                         </div>
 
-                        {/* Run */}
                         <div
                             onClick={() => copy(runCmd, setCopiedRun)}
                             className="group flex items-center justify-between gap-4 bg-black/60 border border-white/8 hover:border-blue-vibrant/30 rounded-xl px-5 py-4 cursor-pointer transition-all"
@@ -241,7 +257,7 @@ const Home = () => {
 
                     <div className="flex flex-col sm:flex-row gap-3 justify-center">
                         <a
-                            href="https://github.com/KushaalNayak/zerostart-cli"
+                            href={GITHUB_URL}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 text-white px-6 py-3 rounded-full text-sm font-bold transition-all"
@@ -250,7 +266,7 @@ const Home = () => {
                             Star on GitHub
                         </a>
                         <a
-                            href="https://www.npmjs.com/package/zerostart-cli"
+                            href={NPM_URL}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 text-white px-6 py-3 rounded-full text-sm font-bold transition-all"
@@ -259,6 +275,13 @@ const Home = () => {
                             View on npm
                         </a>
                     </div>
+
+                    {npmDownloads && (
+                        <p className="text-white/25 text-xs flex items-center justify-center gap-1.5">
+                            <Star className="w-3 h-3 fill-white/25" />
+                            {npmDownloads} downloads last month · live from npm
+                        </p>
+                    )}
                 </div>
             </section>
 

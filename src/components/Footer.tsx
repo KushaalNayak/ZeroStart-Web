@@ -39,7 +39,7 @@ const Footer = () => {
                 <div className="flex items-center gap-2 text-white/20">
                     <span>Built by</span>
                     <a
-                        href="https://github.com/KushaalNayak"
+                        href="https://github.com/KushaalNayak/ZeroStart-cli"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-white/40 hover:text-blue-vibrant transition-colors"
