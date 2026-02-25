@@ -89,7 +89,7 @@ const Home = () => {
                         className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-vibrant/5 border border-blue-vibrant/15 text-blue-vibrant text-[11px] font-bold uppercase tracking-widest"
                     >
                         <Download className="w-3 h-3" />
-                        {npmDownloads ? `${npmDownloads} downloads last month` : 'Loading...'}
+                        {npmDownloads ? `${npmDownloads} user downloads until now` : 'Loading...'}
                     </motion.div>
 
                     <motion.h1
@@ -279,7 +279,7 @@ const Home = () => {
                     {npmDownloads && (
                         <p className="text-white/25 text-xs flex items-center justify-center gap-1.5">
                             <Star className="w-3 h-3 fill-white/25" />
-                            {npmDownloads} downloads last month · live from npm
+                            {npmDownloads} user downloads until now · live from npm
                         </p>
                     )}
                 </div>
