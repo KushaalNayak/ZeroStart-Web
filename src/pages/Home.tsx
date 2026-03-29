@@ -37,14 +37,16 @@ const Home = () => {
     };
 
     const commands = [
+        { cmd: 'zerostart ai [prompt]', desc: 'The AI Architect: Build a project from a simple description.' },
         { cmd: 'zerostart', desc: 'Launch the interactive project wizard' },
         { cmd: 'zerostart dsa-cpp', desc: 'Create a C++ DSA practice project' },
         { cmd: 'zerostart web-react', desc: 'Scaffold a React web app' },
-        { cmd: 'zerostart deploy', desc: 'Deploy project to Vercel' },
         { cmd: 'zerostart help', desc: 'Show all available commands' },
     ];
 
     const reasons = [
+        { icon: '🤖', title: 'AI Architect CLI', desc: 'Scaffold more than just files. Describe your project in plain English, and our AI Architect intelligently generates your folder structure, core logic, and a project roadmap.', featured: true },
+        { icon: '✨', title: 'Smart Practice Interface', desc: 'Your workspace, your rules. When you start a DSA project, ZeroStart gives you a choice: An Online Compiler (Browser) for quick testing or a Local Terminal (CMD) for high-performance coding. Or both.', featured: true },
         { icon: '⚡', title: 'Zero config', desc: 'No boilerplate hunting. One command and you\'re coding.' },
         { icon: '🗂️', title: '6 templates built-in', desc: 'React, TypeScript, HTML/CSS, C++, Java, Python — all ready.' },
         { icon: '🔗', title: 'GitHub auto-setup', desc: 'Repo created, code pushed, remote linked — automatically.' },
@@ -98,8 +100,8 @@ const Home = () => {
                         transition={{ delay: 0.1 }}
                         className="text-5xl md:text-7xl font-bold font-display leading-[1.1] tracking-tight text-white"
                     >
-                        The fastest way to<br />
-                        <span className="text-gradient-blue">start a project.</span>
+                        The <span className="text-gradient-blue focus-in">smartest & fastest</span> way to<br />
+                        <span>start a project — Powered by AI.</span>
                     </motion.h1>
 
                     <motion.p
@@ -108,7 +110,7 @@ const Home = () => {
                         transition={{ delay: 0.2 }}
                         className="text-white/55 text-lg max-w-xl mx-auto leading-relaxed"
                     >
-                        ZeroStart CLI scaffolds, connects GitHub, and optionally deploys — all in under 30 seconds.
+                        ZeroStart CLI scaffolds, connects GitHub, and optionally deploys — and now features <span className="text-blue-400 font-bold">AI Architect</span> for intelligent project planning.
                     </motion.p>
 
                     <motion.div
@@ -141,7 +143,16 @@ const Home = () => {
                 <div className="max-w-2xl mx-auto">
                     <div className="text-center mb-10">
                         <h2 className="text-2xl font-bold font-display text-white">Quick Start</h2>
-                        <p className="text-white/45 text-sm mt-2">Two commands. That's it.</p>
+                        <p className="text-white/45 text-sm mt-2">Get up and running in seconds.</p>
+
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            className="mt-6 inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-vibrant/10 border border-blue-vibrant/30 text-blue-vibrant text-[12px] font-bold shadow-[0_0_20px_rgba(59,130,246,0.2)]"
+                        >
+                            <span className="flex h-2 w-2 rounded-full bg-blue-vibrant animate-pulse" />
+                            NEW: Use 'zerostart ai' to build your vision.
+                        </motion.div>
                     </div>
 
                     <div className="space-y-3">
@@ -238,11 +249,16 @@ const Home = () => {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: i * 0.05 }}
-                                className="glass rounded-xl p-5 border border-white/5 hover:border-blue-vibrant/20 transition-all"
+                                className={`glass rounded-xl p-6 border transition-all ${r.featured ? 'border-blue-vibrant/30 bg-blue-vibrant/5 shadow-[0_0_25px_rgba(59,130,246,0.1)]' : 'border-white/5 hover:border-blue-vibrant/20'}`}
                             >
-                                <div className="text-2xl mb-3">{r.icon}</div>
-                                <h3 className="text-white font-bold text-sm mb-1">{r.title}</h3>
+                                <div className="text-2xl mb-4">{r.icon}</div>
+                                <h3 className="text-white font-bold text-base mb-2">{r.title}</h3>
                                 <p className="text-white/45 text-sm leading-relaxed">{r.desc}</p>
+                                {r.featured && (
+                                    <div className="mt-4 pt-4 border-t border-white/5">
+                                        <span className="text-[10px] font-bold text-blue-vibrant uppercase tracking-widest bg-blue-vibrant/10 px-2 py-1 rounded">Featured AI Tech</span>
+                                    </div>
+                                )}
                             </motion.div>
                         ))}
                     </div>

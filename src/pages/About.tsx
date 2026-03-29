@@ -147,7 +147,7 @@ const About = () => {
                     <div>
                         <p className="text-[10px] font-bold text-white/30 uppercase tracking-widest mb-1">Built by</p>
                         <h3 className="text-white font-bold text-lg font-display">Kushaal Badavath</h3>
-                        <p className="text-white/45 text-sm mt-1">Developer @ Zero-One Devs</p>
+                        {/* <p className="text-white/45 text-sm mt-1">Develo</p> */}
                     </div>
                     <a
                         href="https://github.com/KushaalNayak"

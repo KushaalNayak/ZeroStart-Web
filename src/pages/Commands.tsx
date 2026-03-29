@@ -69,10 +69,12 @@ const Commands = () => {
         { id: 'web', label: 'Web Apps', icon: Zap },
         { id: 'cli', label: 'CLI Tools', icon: Terminal },
         { id: 'ml', label: 'ML Projects', icon: Brain },
+        { id: 'ai', label: 'AI Architect', icon: Zap },
     ];
 
     const commandData: Record<string, any[]> = {
         core: [
+            { command: 'ai [prompt]', description: 'The AI Architect: Build a project from a simple description.', example: 'ai "a nextjs blog with tailwind"' },
             { command: '', description: 'Launch interactive setup wizard.', example: '' },
             { command: 'init [name]', description: 'Initialize a new project.', example: 'init my-cool-app' },
             { command: '--help', description: 'View all commands.', example: '--help' },
@@ -113,6 +115,10 @@ const Commands = () => {
             { command: 'ml-py', description: 'Instant Python ML environment.', example: 'ml-py' },
             { command: 'ml-java', description: 'Instant Java ML environment.', example: 'ml-java' },
             { command: 'ml-cpp', description: 'Instant C++ ML environment.', example: 'ml-cpp' },
+        ],
+        ai: [
+            { command: 'ai [prompt]', description: 'Describe your project in plain English, and our AI Architect intelligently generates your folder structure, core logic, and a project roadmap.', example: 'ai "portfolio website with framer motion"' },
+            { command: 'ai --configure', description: 'Configure AI provider and API keys.', example: 'ai --configure' },
         ]
     };
 
