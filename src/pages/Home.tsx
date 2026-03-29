@@ -17,7 +17,8 @@ const Home = () => {
     const runCmd = 'zerostart';
 
     useEffect(() => {
-        fetch('https://api.npmjs.org/downloads/point/last-month/zerostart-cli')
+        const today = new Date().toISOString().split('T')[0];
+        fetch(`https://api.npmjs.org/downloads/point/2025-01-27:${today}/zerostart-cli`)
             .then(r => r.json())
             .then(data => {
                 const n = data.downloads as number;
@@ -27,7 +28,7 @@ const Home = () => {
                     setNpmDownloads(String(n));
                 }
             })
-            .catch(() => setNpmDownloads('3K+'));
+            .catch(() => setNpmDownloads('800+'));
     }, []);
 
     const copy = (text: string, setter: (v: boolean) => void) => {
