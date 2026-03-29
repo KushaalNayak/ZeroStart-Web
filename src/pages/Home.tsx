@@ -18,17 +18,29 @@ const Home = () => {
 
     useEffect(() => {
         const today = new Date().toISOString().split('T')[0];
-        fetch(`https://api.npmjs.org/downloads/point/2025-01-27:${today}/zerostart-cli`)
-            .then(r => r.json())
-            .then(data => {
-                const n = data.downloads as number;
-                if (n >= 1000) {
-                    setNpmDownloads((n / 1000).toFixed(1) + 'K');
-                } else {
-                    setNpmDownloads(String(n));
-                }
-            })
-            .catch(() => setNpmDownloads('800+'));
+        
+        Promise.all([
+            fetch(`https://api.npmjs.org/downloads/point/2025-01-27:${today}/zerostart-cli`).then(r => r.json()).catch(() => ({downloads: 800})),
+            fetch('https://marketplace.visualstudio.com/_apis/public/gallery/extensionquery', {
+                method: 'POST',
+                headers: { 'Accept': 'application/json;api-version=3.0-preview.1', 'Content-Type': 'application/json' },
+                body: JSON.stringify({ filters: [{ criteria: [{ filterType: 7, value: 'zerostart.zerostart-vscode' }] }], flags: 2 })
+            }).then(r => r.json()).catch(() => null)
+        ]).then(([npmData, vsData]) => {
+            let n = npmData.downloads || 800;
+            let v = 50;
+            if (vsData?.results?.[0]?.extensions?.[0]) {
+                const ext = vsData.results[0].extensions[0];
+                const stat = ext.statistics.find((s: any) => s.statisticName === 'install');
+                if (stat) v = stat.value;
+            }
+            const total = n + v;
+            if (total >= 1000) {
+                setNpmDownloads((total / 1000).toFixed(1) + 'K');
+            } else {
+                setNpmDownloads(String(total));
+            }
+        });
     }, []);
 
     const copy = (text: string, setter: (v: boolean) => void) => {
@@ -89,10 +101,9 @@ const Home = () => {
                     <motion.div
                         initial={{ opacity: 0, y: -10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-vibrant/5 border border-blue-vibrant/15 text-blue-vibrant text-[11px] font-bold uppercase tracking-widest"
+                        className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-vibrant/5 border border-blue-vibrant/20 text-blue-vibrant text-[12px] font-bold tracking-widest shadow-[0_0_15px_rgba(59,130,246,0.1)]"
                     >
-                        <Download className="w-3 h-3" />
-                        {npmDownloads ? `${npmDownloads} user downloads until now` : 'Loading...'}
+                        {npmDownloads ? `⭐ Trusted by ${npmDownloads} users on NPM & VS Code` : 'Loading...'}
                     </motion.div>
 
                     <motion.h1
@@ -266,13 +277,62 @@ const Home = () => {
                 </div>
             </section>
 
+            {/* ── 5.5. VS CODE EXTENSION ── */}
+            <section className="py-24 px-6 relative overflow-hidden bg-white/[0.01] border-y border-white/5">
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-blue-vibrant/5 rounded-full blur-[120px] pointer-events-none"></div>
+                
+                <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-12 lg:gap-20">
+                    <div className="flex-1 space-y-8 relative z-10 text-center md:text-left">
+                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-vibrant/10 border border-blue-vibrant/20 text-blue-vibrant text-[11px] font-bold uppercase tracking-widest shadow-[0_0_15px_rgba(59,130,246,0.15)]">
+                            <Star className="w-3 h-3" /> New Release
+                        </div>
+                        
+                        <h2 className="text-4xl md:text-5xl font-bold font-display text-white tracking-tight leading-[1.1]">
+                            ZeroStart is now on <br className="hidden md:block" />
+                            <span className="text-gradient-blue whitespace-nowrap">VS Code</span>
+                        </h2>
+                        
+                        <p className="text-white/50 text-lg leading-relaxed max-w-md mx-auto md:mx-0">
+                            Bring the full power of the ZeroStart CLI directly into your editor. Generate projects, manage templates, and run commands without ever leaving your IDE workflow.
+                        </p>
+                        
+                        <div className="pt-2">
+                            <a
+                                href="https://marketplace.visualstudio.com/items?itemName=zerostart.zerostart-vscode"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex flex-col sm:flex-row items-center justify-center gap-3 bg-blue-vibrant text-black px-8 py-4 rounded-full text-sm font-bold transition-all hover:opacity-90 active:scale-95 shadow-[0_0_25px_rgba(59,130,246,0.25)]"
+                            >
+                                <div className="flex items-center gap-2">
+                                    <Download className="w-4 h-4" />
+                                    Install Extension
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div className="flex-1 w-full relative z-10 md:[perspective:1000px]">
+                        <div className="relative group transition-transform duration-700 transform-gpu md:[transform:rotateY(-8deg)_rotateX(4deg)] md:hover:[transform:rotateY(0deg)_rotateX(0deg)]">
+                            <div className="absolute -inset-1 bg-gradient-to-tr from-blue-vibrant/0 via-blue-vibrant/20 to-blue-vibrant/0 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                            <div className="glass rounded-3xl border border-white/10 p-2 relative bg-black/40 shadow-2xl overflow-hidden before:absolute before:inset-0 before:bg-gradient-to-br before:from-white/10 before:to-transparent before:pointer-events-none before:rounded-3xl hover:border-blue-vibrant/30 transition-colors">
+                                <img 
+                                    src="/logo.png" 
+                                    alt="ZeroStart VS Code Extension" 
+                                    className="w-full h-auto rounded-2xl border border-white/5 relative z-10 max-h-[400px] object-contain bg-[#0F111A] sm:p-8 p-4 shadow-inner" 
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             {/* ── 6. DEV LINKS ── */}
             <section className="py-20 px-6">
-                <div className="max-w-2xl mx-auto text-center space-y-6">
+                <div className="max-w-3xl mx-auto text-center space-y-8">
                     <h2 className="text-2xl font-bold font-display text-white">Get Involved</h2>
                     <p className="text-white/45 text-sm">Open source. Built for developers.</p>
 
-                    <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <a
                             href={GITHUB_URL}
                             target="_blank"
@@ -291,12 +351,20 @@ const Home = () => {
                             <TerminalIcon className="w-4 h-4" />
                             View on npm
                         </a>
+                        <a
+                            href="https://marketplace.visualstudio.com/items?itemName=zerostart.zerostart-vscode"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center justify-center gap-2 bg-blue-vibrant/10 hover:bg-blue-vibrant/20 border border-blue-vibrant/30 text-blue-vibrant px-6 py-3 rounded-full text-sm font-bold transition-all"
+                        >
+                            <Download className="w-4 h-4" />
+                            Install for VS Code
+                        </a>
                     </div>
 
                     {npmDownloads && (
-                        <p className="text-white/25 text-xs flex items-center justify-center gap-1.5">
-                            <Star className="w-3 h-3 fill-white/25" />
-                            {npmDownloads} user downloads until now · live from npm
+                        <p className="text-white/25 text-xs flex items-center justify-center gap-1.5 pt-4">
+                            ⭐ Trusted by {npmDownloads} users on NPM & VS Code
                         </p>
                     )}
                 </div>
