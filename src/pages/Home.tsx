@@ -31,7 +31,7 @@ const Home = () => {
             let v = 50;
             if (vsData?.results?.[0]?.extensions?.[0]) {
                 const ext = vsData.results[0].extensions[0];
-                const stat = ext.statistics.find((s: any) => s.statisticName === 'install');
+                const stat = ext.statistics?.find((s: any) => s.statisticName === 'install');
                 if (stat) v = stat.value;
             }
             const total = n + v;
@@ -80,6 +80,7 @@ const Home = () => {
                     <div className="hidden md:flex items-center gap-8 text-[11px] font-bold text-white/50 uppercase tracking-widest">
                         <a href="#quickstart" className="hover:text-blue-vibrant transition-colors">Quick Start</a>
                         <a href="#commands" className="hover:text-blue-vibrant transition-colors">Commands</a>
+                        <Link to="/changelog" className="hover:text-blue-vibrant transition-colors">Updates</Link>
                         <Link to="/about" className="hover:text-blue-vibrant transition-colors">About</Link>
                     </div>
 

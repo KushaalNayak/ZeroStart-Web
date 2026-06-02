@@ -5,6 +5,7 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Privacy from './pages/Privacy';
 import Terms from './pages/Terms';
+import Changelog from './pages/Changelog';
 import ScrollToTop from './components/ScrollToTop';
 
 const App = () => {
@@ -18,6 +19,7 @@ const App = () => {
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/privacy" element={<Privacy />} />
                 <Route path="/terms" element={<Terms />} />
+                <Route path="/changelog" element={<Changelog />} />
             </Routes>
         </Router>
     );
