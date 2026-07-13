@@ -6,9 +6,19 @@ import Footer from '../components/Footer';
 
 const releases = [
     {
+        version: 'v0.1.0',
+        date: 'July 2026',
+        badge: 'Latest',
+        updates: [
+            { title: 'Interactive Workspace Wizard', desc: 'Introduced "zerostart" / "zerostart init [name]" to launch a step-by-step interactive wizard configuring name, framework, TS, package manager, git, and add-ons.' },
+            { title: 'Modular Feature Adder', desc: 'Added "zerostart add <module>" to dynamically install and auto-configure eslint, prettier, tailwind, docker, github-actions, prisma, and shadcn non-interactively.' },
+            { title: 'Environment Diagnostics ("doctor")', desc: 'Run "zerostart doctor" to audit Node.js, package managers, Git, Docker, and VS Code configurations, with quick fix links.' },
+            { title: 'Static Project Analyzer ("inspect")', desc: 'Run "zerostart inspect" to scan your workspace directory for configuration files and suggest potential developer tool optimizations.' }
+        ]
+    },
+    {
         version: 'v0.0.50',
         date: 'June 2026',
-        badge: 'Latest',
         updates: [
             { title: 'Security Upgrade - Local Git Configurations', desc: 'Completely overhauled the GitHub CLI initialization flow. Personal Access Tokens (PATs) are now passed directly during the git push command rather than being embedded in the remote URL. This guarantees that your token is never accidentally left behind in plain text inside the .git/config file.' },
             { title: 'Enhanced API Reliability', desc: 'Added strict length validators for GitHub repository topics. Project tags and languages are now smartly truncated to the 35-character limit, preventing the GitHub API from silently rejecting the initialization process for longer tech-stack names.' },

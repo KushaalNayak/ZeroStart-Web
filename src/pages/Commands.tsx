@@ -74,11 +74,12 @@ const Commands = () => {
 
     const commandData: Record<string, any[]> = {
         core: [
+            { command: 'init [name]', description: 'Launches the Interactive Workspace Wizard (Project Name, Framework, Package Manager, TypeScript, Git, Add-ons).', example: 'init my-awesome-project' },
+            { command: '', description: 'Launch the Interactive Workspace Wizard directly.', example: '' },
             { command: 'ai [prompt]', description: 'The AI Architect: Build a project from a simple description.', example: 'ai "a nextjs blog with tailwind"' },
-            { command: '', description: 'Launch interactive setup wizard.', example: '' },
-            { command: 'init [name]', description: 'Initialize a new project.', example: 'init my-cool-app' },
+            { command: 'doctor', description: 'Environment health checker. Audits node, npm, git, docker, pnpm, bun, and VS Code.', example: 'doctor' },
+            { command: 'inspect', description: 'Static project analyzer. Scans workspace for crucial configs and recommends optimizations.', example: 'inspect' },
             { command: '--help', description: 'View all commands.', example: '--help' },
-            { command: '--version', description: 'Check CLI version.', example: '--version' },
         ],
         deploy: [
             { command: 'deploy', description: 'Interactive deployment (Vercel/Netlify).', example: 'deploy' },
@@ -86,13 +87,17 @@ const Commands = () => {
             { command: 'deploy-netlify', description: 'Instant Netlify deployment.', example: 'deploy-netlify' },
         ],
         tools: [
+            { command: 'add <module>', description: 'Installs and configures docker, prisma, shadcn, github-actions, prettier, eslint, or tailwind dynamically.', example: 'add tailwind' },
+            { command: 'add eslint', description: 'Installs eslint, configures .eslintrc.json, and adds lint script.', example: 'add eslint' },
+            { command: 'add prettier', description: 'Installs prettier, configures .prettierrc / .prettierignore, and adds format script.', example: 'add prettier' },
+            { command: 'add tailwind', description: 'Installs tailwindcss, postcss, autoprefixer; generates configs; injects CSS.', example: 'add tailwind' },
+            { command: 'add docker', description: 'Adds custom Dockerfile (Next.js, React Nginx, Node, Python, Java).', example: 'add docker' },
+            { command: 'add github-actions', description: 'Creates a CI/CD build/test pipeline under .github/workflows/ci.yml.', example: 'add github-actions' },
+            { command: 'add prisma', description: 'Configures Prisma ORM with SQLite and creates a sample database model.', example: 'add prisma' },
+            { command: 'add shadcn', description: 'Non-interactively sets up components.json and lib/utils.', example: 'add shadcn' },
             { command: 'git', description: 'Setup local & remote GitHub repo.', example: 'git' },
-            { command: 'add [feature]', description: 'Add Auth, DB, or UI modules.', example: 'add auth' },
             { command: 'env', description: 'Interactive .env manager.', example: 'env' },
             { command: 'test', description: 'Setup Jest, Vitest, or Cypress.', example: 'test' },
-            { command: 'dev', description: 'Start development server.', example: 'dev' },
-            { command: 'build', description: 'Build for production.', example: 'build' },
-            { command: 'clean', description: 'Reset project/reinstall deps.', example: 'clean' },
         ],
         dsa: [
             { command: 'dsa-py', description: 'Instant Python DSA environment.', example: 'dsa-py' },

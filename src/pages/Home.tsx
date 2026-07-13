@@ -50,11 +50,11 @@ const Home = () => {
     };
 
     const commands = [
-        { cmd: 'zerostart ai [prompt]', desc: 'The AI Architect: Build a project from a simple description.' },
-        { cmd: 'zerostart', desc: 'Launch the interactive project wizard' },
-        { cmd: 'zerostart dsa-cpp', desc: 'Create a C++ DSA practice project' },
-        { cmd: 'zerostart web-react', desc: 'Scaffold a React web app' },
-        { cmd: 'zerostart help', desc: 'Show all available commands' },
+        { cmd: 'zerostart init [name]', desc: 'Launches the new Interactive Workspace Wizard' },
+        { cmd: 'zerostart add <module>', desc: 'Installs project features dynamically (eslint, tailwind, docker, etc.)' },
+        { cmd: 'zerostart doctor', desc: 'Environment health checker for Node, Git, Docker, etc.' },
+        { cmd: 'zerostart inspect', desc: 'Static project analyzer recommending developer optimizations' },
+        { cmd: 'zerostart ai [prompt]', desc: 'AI Architect: Scaffold projects from a text description' },
     ];
 
     const reasons = [
@@ -274,6 +274,41 @@ const Home = () => {
                                 )}
                             </motion.div>
                         ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* ── GitHub Star Booster Section ── */}
+            <section className="py-12 px-6">
+                <div className="max-w-4xl mx-auto">
+                    <div className="relative rounded-3xl overflow-hidden border border-blue-vibrant/20 bg-[#0F111A]/80 backdrop-blur-xl p-8 md:p-12 shadow-[0_0_50px_rgba(59,130,246,0.15)] flex flex-col md:flex-row items-center justify-between gap-8 group hover:border-blue-vibrant/40 transition-all duration-300">
+                        {/* Glow effect */}
+                        <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-blue-vibrant/5 rounded-full blur-[80px] pointer-events-none group-hover:bg-blue-vibrant/10 transition-all duration-300"></div>
+                        
+                        <div className="space-y-4 max-w-xl text-center md:text-left z-10">
+                            <span className="px-3 py-1 rounded-full bg-blue-vibrant/10 border border-blue-vibrant/20 text-blue-vibrant text-[10px] font-bold uppercase tracking-widest">
+                                Support Open Source
+                            </span>
+                            <h2 className="text-3xl font-bold font-display text-white tracking-tight">
+                                Show some love on <span className="text-gradient-blue">GitHub</span> ⭐
+                            </h2>
+                            <p className="text-white/50 text-sm leading-relaxed">
+                                ZeroStart is entirely free and open-source. Starring our repository helps other developers discover the toolkit, fuels new features, and keeps our templates updated. Let's hit the next star milestone together!
+                            </p>
+                        </div>
+                        
+                        <div className="flex flex-col items-center gap-4 z-10 shrink-0">
+                            <a
+                                href={GITHUB_URL}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center gap-2 bg-gradient-to-r from-blue-vibrant to-cyan-400 hover:from-blue-vibrant/90 hover:to-cyan-400/90 text-black px-8 py-4 rounded-full text-sm font-bold shadow-lg shadow-blue-vibrant/20 hover:scale-105 active:scale-95 transition-all duration-200"
+                            >
+                                <Star className="w-4 h-4 fill-black animate-pulse" />
+                                Star on GitHub
+                            </a>
+                            <span className="text-xs text-white/40 font-mono">Join other stargazers!</span>
+                        </div>
                     </div>
                 </div>
             </section>
