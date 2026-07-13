@@ -6,7 +6,7 @@ import Footer from '../components/Footer';
 
 const releases = [
     {
-        version: 'v0.1.0',
+        version: 'v0.0.55',
         date: 'July 2026',
         badge: 'Latest',
         updates: [
